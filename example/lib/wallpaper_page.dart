@@ -56,11 +56,11 @@ class _WallpaperPageState extends State<WallpaperPage> {
                       title: new Text('选择方式'),
                       children: <Widget>[
                         new SimpleDialogOption(
-                          child: new Text('通过系统设置'),
+                          child: new Text('设置锁屏壁纸'),
                           onPressed: () async {
                             Navigator.pop(context);
                             bool isSuccess =
-                                await WallpaperPlugin.setSystemWallpaper(
+                                await WallpaperPlugin.SetLockWallPaper(
                                     appDocPath + "/" + fileName);
                             if (isSuccess) {
                               ToastTool.show('设置成功');
@@ -70,7 +70,7 @@ class _WallpaperPageState extends State<WallpaperPage> {
                           },
                         ),
                         new SimpleDialogOption(
-                          child: new Text('直接设置'),
+                          child: new Text('设置桌面壁纸'),
                           onPressed: () async {
                             Navigator.pop(context);
                             bool isSuccess =

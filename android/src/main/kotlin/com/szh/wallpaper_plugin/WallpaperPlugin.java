@@ -77,12 +77,14 @@ public class WallpaperPlugin implements MethodChannel.MethodCallHandler {
                 break;
             case "SystemWallpaper":
 //                setWallpaperByIntent(path, result);
-                //下面的方法系统壁纸没有虚化和滚动功能
-                setWallpaper(path, result);
+//                setWallpaper(path, result);
                 break;
             case "VideoWallpaper":
                 boolean volume = call.argument("volume");
                 LiveWallpaperService.startWallPaper(activity, path, volume, REQUEST_CODE_VIDEO_WALLPAPER);
+                break;
+            case "SetLockWallPaper":
+                result.success(WallpaperUtil.setLockWallPaper(activity, path));
                 break;
             default:
                 result.notImplemented();
@@ -159,4 +161,5 @@ public class WallpaperPlugin implements MethodChannel.MethodCallHandler {
             }
         }
     }
+
 }

@@ -28,4 +28,11 @@ class WallpaperPlugin {
         await _channel.invokeMethod('WallPaperDirect', params);
     return isSuccess;
   }
+
+  static Future<bool> SetLockWallPaper(String path) async {
+    final Map<String, dynamic> params = <String, dynamic>{'path': path};
+    final bool isSuccess =
+        await _channel.invokeMethod('SetLockWallPaper', params);
+    return isSuccess;
+  }
 }

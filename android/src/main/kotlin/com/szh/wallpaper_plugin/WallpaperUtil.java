@@ -6,9 +6,12 @@ import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 
 import java.io.IOException;
+
+import io.flutter.plugin.common.MethodChannel;
 
 
 /**
@@ -101,5 +104,19 @@ public class WallpaperUtil {
     @SuppressLint("NewApi")
     public static boolean isLivingWallpaper(Context paramContext) {
         return (WallpaperManager.getInstance(paramContext).getWallpaperInfo() != null);
+    }
+
+    @SuppressLint({"NewApi", "MissingPermission"})
+    public static boolean setLockWallPaper(Activity activity, String filePath) {
+        // TODO Auto-generated method stub
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(activity);
+        try {
+            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

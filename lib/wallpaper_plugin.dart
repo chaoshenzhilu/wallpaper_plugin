@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 
@@ -34,5 +35,15 @@ class WallpaperPlugin {
     final bool isSuccess =
         await _channel.invokeMethod('SetLockWallPaper', params);
     return isSuccess;
+  }
+
+  static Future<bool> saveImage(Uint8List imageBytes, String path) async {
+    assert(imageBytes != null);
+    final Map<String, dynamic> params = <String, dynamic>{
+      'path': path,
+      'imageBytes': imageBytes
+    };
+    final result = await _channel.invokeMethod('saveImageToFile', params);
+    return result;
   }
 }

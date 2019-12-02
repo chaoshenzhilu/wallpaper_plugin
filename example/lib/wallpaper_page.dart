@@ -31,7 +31,7 @@ class _WallpaperPageState extends State<WallpaperPage> {
     // TODO: implement initState
     super.initState();
     imageUrl =
-        'http://material_manager.lionmobi.com/public/upload/285eab34.png';
+        'https://d8js4kmvmz3fd.cloudfront.net/material_manager/201806/08112707721.jpg';
     fileName = generateMd5(imageUrl) + '.png';
     _init();
   }

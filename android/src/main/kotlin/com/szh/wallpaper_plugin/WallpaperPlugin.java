@@ -86,6 +86,10 @@ public class WallpaperPlugin implements MethodChannel.MethodCallHandler {
             case "SetLockWallPaper":
                 result.success(WallpaperUtil.setLockWallPaper(activity, path));
                 break;
+            case "saveImageToFile":
+                byte[] byteArray = call.argument("imageBytes");
+                result.success(ImageSave.saveImageToFile(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length), path));
+                break;
             default:
                 result.notImplemented();
                 break;

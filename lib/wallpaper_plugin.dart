@@ -49,8 +49,7 @@ class WallpaperPlugin {
     return result;
   }
 
-  static Future<bool> saveImageIOS(
-      Uint8List imageBytes) async {
+  static Future<bool> saveImageIOS(Uint8List imageBytes) async {
     final result = await _channel.invokeMethod('saveImageToFile', imageBytes);
     return result;
   }

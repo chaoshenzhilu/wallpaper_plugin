@@ -88,7 +88,8 @@ public class WallpaperPlugin implements MethodChannel.MethodCallHandler {
                 break;
             case "saveImageToFile":
                 byte[] byteArray = call.argument("imageBytes");
-                result.success(ImageSave.saveImageToFile(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length), path));
+                String fileName = call.argument("fileName").toString();
+                result.success(ImageSave.saveImageToFile(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length), path,fileName));
                 break;
             default:
                 result.notImplemented();

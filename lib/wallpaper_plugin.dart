@@ -37,11 +37,13 @@ class WallpaperPlugin {
     return isSuccess;
   }
 
-  static Future<bool> saveImage(Uint8List imageBytes, String path) async {
+  static Future<bool> saveImage(
+      Uint8List imageBytes, String path, String fileName) async {
     assert(imageBytes != null);
     final Map<String, dynamic> params = <String, dynamic>{
       'path': path,
-      'imageBytes': imageBytes
+      'imageBytes': imageBytes,
+      'fileName': fileName,
     };
     final result = await _channel.invokeMethod('saveImageToFile', params);
     return result;

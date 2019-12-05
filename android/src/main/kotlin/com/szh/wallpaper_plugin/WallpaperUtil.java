@@ -56,7 +56,7 @@ public class WallpaperUtil {
             final DisplayMetrics metrics = setWallpaperManagerFitScreen(activity);
             // 2. center-crop裁剪
             Bitmap wallpaper = centerCrop(bitmap, metrics);
-            wallpaperManager.setBitmap(wallpaper);
+            wallpaperManager.setBitmap(wallpaper, null, true, WallpaperManager.FLAG_SYSTEM);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -114,7 +114,11 @@ public class WallpaperUtil {
         Bitmap bitmap = BitmapFactory.decodeFile(filePath);
         WallpaperManager wallpaperManager = WallpaperManager.getInstance(activity);
         try {
-            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK);
+            // 1. 设置WallpaperManager适应屏幕尺寸
+            final DisplayMetrics metrics = setWallpaperManagerFitScreen(activity);
+            // 2. center-crop裁剪
+            Bitmap wallpaper = centerCrop(bitmap, metrics);
+            wallpaperManager.setBitmap(wallpaper, null, true, WallpaperManager.FLAG_LOCK);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
